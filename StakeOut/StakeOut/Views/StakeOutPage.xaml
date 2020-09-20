@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:StakeOut"
+             x:Class="StakeOut.StakeOutPage"
+             BackgroundColor="LightGray" Padding="10">
+    <ContentPage.BindingContext>
+        <local:StakeOutViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" 
+               Grid.ColumnSpan="2"
+             Style="{DynamicResource TitleStyle}"
+            Text="{Binding PointNumber}" 
+           x:Name="PointNumber"
+           VerticalOptions="Start" 
+           HorizontalOptions="Center" />
+
+        <Image
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="FillAndExpand"
+               VerticalOptions="FillAndExpand"
+               
+               Source="compass.png"/>
+
+        <Image
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Rotation="{Binding Heading}"
+               Source="arrow.png"
+               Margin="75"
+               x:Name="ImageArrow"/>
+        
+        <Label Grid.Row="2" 
+            Grid.Column="0" 
+            Style="{DynamicResource TitleStyle}"
+            Text="{Binding DeltaX}" 
+           x:Name="DeltaX"
+           VerticalOptions="End" 
+           HorizontalOptions="Center" />
+
+        <Label Grid.Row="2" 
+            Grid.Column="1"   
+            Style="{DynamicResource TitleStyle}"
+            Text="{Binding DeltaY}" 
+           x:Name="DeltaY"
+           VerticalOptions="End" 
+           HorizontalOptions="Center" />
+
+        <Label Grid.Row="3" 
+            Grid.ColumnSpan="2"
+            Style="{DynamicResource TitleStyle}"
+            Text="{Binding Distance}" 
+           x:Name="Distance"
+           VerticalOptions="Start" 
+           HorizontalOptions="Center" />
+
+
+        <Label Grid.Row="4" 
+               Grid.ColumnSpan="2"
+            Style="{DynamicResource TitleStyle}"
+            Text="{Binding HeadingDisplay}" 
+           x:Name="LabelInfo"
+           VerticalOptions="End" 
+           HorizontalOptions="Center" />
+
+    </Grid>
+</ContentPage>

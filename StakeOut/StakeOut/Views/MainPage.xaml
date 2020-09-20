@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:StakeOut"
+             mc:Ignorable="d"
+             BackgroundColor="PowderBlue"
+             x:Class="StakeOut.MainPage"
+             Title="Points">
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid Margin="20,40">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+
+        <Image Source="point.png"
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2" />
+
+        <Button Text="Go to MAP"
+                FontAttributes="Bold"
+                FontSize="Large"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Margin="10,0"
+                Command="{Binding GoToMapCommand}"
+                BackgroundColor="Yellow"
+                TextColor="Black" />
+
+        <Editor Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Placeholder="Number"
+                Margin="10,10"
+                BackgroundColor="White"
+                Text="{Binding Number}" />
+
+        <Editor Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Placeholder="X"
+                Margin="10,10"
+                BackgroundColor="White"
+                Text="{Binding CoordinateX}" />
+
+        <Editor Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Placeholder="Y"
+                Margin="10,10"
+                BackgroundColor="White"
+                Text="{Binding CoordinateY}" />
+
+        <Button Text="Save"
+                FontAttributes="Bold"
+                Grid.Row="5"
+                Grid.Column="0"
+                Margin="10,0"
+                Command="{Binding SavePointCommand}"
+                BackgroundColor="Green"
+                TextColor="White" />
+
+        <Button Text="Delete"
+                Grid.Row="5"
+                Grid.Column="1"
+                Margin="10,0"
+                Command="{Binding ErasePointsCommand}"
+                BackgroundColor="Red"
+                TextColor="White" />
+
+        <CollectionView Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="6"
+                        ItemsSource="{Binding Points}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedPoint}"
+                        SelectionChangedCommand="{Binding PointSelectedCommand}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10,10">
+                        <Frame>
+                            <Label Text="{Binding Number}"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"/>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+</ContentPage>
